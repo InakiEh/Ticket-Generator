@@ -1,6 +1,8 @@
 from fpdf import FPDF
 import time
- 
+from tkinter import * 
+
+
 class CustomPDF(FPDF):
  
     def header(self):
@@ -15,9 +17,7 @@ class CustomPDF(FPDF):
         self.line(20, 280, 190, 280)
         page = 'Pag ' + str(self.page_no()) + '/{nb}'
         self.cell(0, 10, page, 0, 0, align='C')
-    
 
- 
 def create_pdf(pdf_path):
 
     a = time.strftime("%d/%m/%y")
@@ -61,11 +61,10 @@ def create_pdf(pdf_path):
     pdf.set_font('Arial', '', 10.0)
     pdf.cell(25)
     
-
     effective_page_width = pdf.w - 2*pdf.l_margin
 
     pdf.set_font('Arial','B',10.0)
-    pdf.cell(95, 5, 'Boris Suazo Haro')
+    pdf.cell(95, 5, '')
     pdf.cell(0, 5, 'Nº1 / Santiago / 2019', ln=1)
     pdf.cell(25)
     pdf.cell(0, 5, 'Director Regional', ln=1)
@@ -94,7 +93,20 @@ def create_pdf(pdf_path):
     pdf.multi_cell((effective_page_width/2)-40, 5, 'pp. Constructora Tipaume S.A.')
     pdf.ln(3)
     pdf.output(pdf_path)
+
+window = Tk()
  
-if __name__ == '__main__':
-    create_pdf('El PDF.pdf')
-    
+#nombre = Tk.StringVar()
+
+label1 = Label(window,text="Nombre")
+label2 = Label(window,text="    ")
+nombre = Entry(window)
+
+button = Button(window,text="Guardar",command=create_pdf(nombre))
+
+label1.grid(row=0, column=0)
+label2.grid(row=0, column=1)
+nombre.grid(row=0, column=2)
+button.grid(row=1, column=0)
+ 
+window.mainloop()
