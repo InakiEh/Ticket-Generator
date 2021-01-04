@@ -1,3 +1,4 @@
 # PDF Generator
 
-Python / Tkinter
+Python / Tkinter software for ticket generation.
+Company: OTZI Constructora
