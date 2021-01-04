@@ -1,1 +1,3 @@
-# PDF
+# PDF Generator
+
+Python / Tkinter
